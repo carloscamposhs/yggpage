@@ -7,12 +7,23 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="sources/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="sources/css/home.css">
     <link rel="stylesheet" href="sources/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
     <title>Hello, world!</title>
   </head>
   <script src="sources/js/jquery/jquery-3.4.1.min.js"></script>
   <script src="sources/bootstrap/js/bootstrap.min.js"></script>
   <script src="sources/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+  <script src="sources/ace/src/ace.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="screen">
+    #ace { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
   
   <script>  
 	$(function(){
@@ -22,11 +33,21 @@
 		todayHighlight: true,
 		toggleActive: true
 		});
+		var editor = ace.edit("ace");
+		editor.setTheme("ace/theme/monokai");
+		editor.session.setMode("ace/mode/javascript");
 	});
   </script>
   <body>
     <h1>Hello, world!</h1>
+	<div id="content">
 	<div id="datepicker"></div>
-
+	</div>
+	<div id="ace">
+		function foo(items) {
+			var x = "All this is syntax highlighted";
+			return x;
+		}
+	</div>
   </body>
 </html>

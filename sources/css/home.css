@@ -1,0 +1,14 @@
+#content{
+	min-width: 75%;
+	width: 600px;
+	margin: 0 auto;
+}
+#sidebad{
+	width: 30%;
+}
+.datepicker-inline {
+    width: 100%;
+}
+.datepicker table {
+    width: 100%;
+}
