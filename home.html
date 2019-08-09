@@ -15,39 +15,56 @@
   <script src="sources/bootstrap/js/bootstrap.min.js"></script>
   <script src="sources/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
   <script src="sources/ace/src/ace.js" type="text/javascript" charset="utf-8"></script>
-  <style type="text/css" media="screen">
-    #ace { 
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
 </style>
   
   <script>  
 	$(function(){
+		// Date picker
 		$('#datepicker').datepicker({
-		maxViewMode: 2,
-		language: "pt-BR",
-		todayHighlight: true,
-		toggleActive: true
+			maxViewMode: 2,
+			language: "pt-BR",
+			todayHighlight: true,
+			toggleActive: true
 		});
+		// Ace
 		var editor = ace.edit("ace");
 		editor.setTheme("ace/theme/monokai");
+		editor.setOptions({
+			autoScrollEditorIntoView: true
+		});
+		editor.renderer.setScrollMargin(0, 0, 0, 0);
 		editor.session.setMode("ace/mode/javascript");
+		
+		var datepickerC = $('#datepicker');
+		var datepicker = $('.datepicker');
+		var datepickerWidth = datepickerC.width();
+		datepicker.css("height", datepicker.width());
+		var datepickercondensed = $('.table-condensed');
+		datepickercondensed.css("height", datepickercondensed.width());
+		window.onresize = function(event) {
+			var currentWidth = datepickerC.width();;
+			console.log(currentWidth);
+			if(currentWidth!==datepickerWidth){
+			  datepicker.css("height", currentWidth);
+			  datepickercondensed.css("height", currentWidth);
+			  datepickerWidth = currentWidth;
+			}
+		};
 	});
   </script>
   <body>
-    <h1>Hello, world!</h1>
 	<div id="content">
-	<div id="datepicker"></div>
-	</div>
-	<div id="ace">
-		function foo(items) {
-			var x = "All this is syntax highlighted";
-			return x;
-		}
+		<div id="side">
+			<div id="datepicker"></div>
+		</div>
+		<div id="main">
+			<pre id="ace">
+			function foo(items) {
+				var x = "All this is syntax highlighted";
+				return x;
+			}
+			</pre>
+		</div>
 	</div>
   </body>
 </html>
